@@ -527,7 +527,13 @@ void *cookie)
 	llvm_bundle_found = FALSE;
 #endif /* LTO_SUPPORT */
 
-    memset(&process_flags, '\0', sizeof(process_flags)); /* cctools-port */
+	/* cctools-port start */
+	memset(&process_flags, '\0', sizeof(process_flags));
+#ifdef LTO_SUPPORT
+	llvm_bundle_pointer = NULL;
+	llvm_bundle_size = 0;
+#endif /* LTO_SUPPORT */
+	/* cctools-port end */
 
 	cmd_flags = (struct cmd_flags *)cookie;
 
